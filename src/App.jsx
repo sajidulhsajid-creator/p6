@@ -5,7 +5,7 @@ import { ArrowUpRight, Download, Github, Linkedin, Mail, Menu, X } from 'lucide-
 const projects = [
     {
     id: 'nanya',
-    title: 'NANYA Station',
+    title: 'NsANYA Station',
     fullTitle: 'Nanya Acoustic Monitoring Station',
     client: 'Federation University Australia - Nanya Conservation Reserve',
     role: 'Research and Development Intern ',
