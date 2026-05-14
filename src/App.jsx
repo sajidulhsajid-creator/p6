@@ -3,20 +3,21 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRight, Download, Github, Linkedin, Mail, Menu, X } from 'lucide-react';
 
 const projects = [
-  {
-    id: 'simint',
-    title: 'SIMINT',
-    fullTitle: 'SIMINT — Simulative Intelligence',
-    client: 'Federation University Australia',
-    role: 'Developer / Scrum Master',
-    focus: 'AI, Neo4j, Streamlit, Natural Language Querying',
-    year: '2025',
-    color: '#D04A2B',
-    intro: 'An AI-powered investigation support system that lets non-technical users ask natural-language questions and receive structured insights from a cloud-hosted graph database.',
-    details: 'SIMINT explores natural language to Cypher query generation, Neo4j Aura, graph visualisation, and investigative intelligence workflows. The goal is to reduce technical barriers and help users uncover relationships across incidents, actors, locations, ideologies, and event patterns.',
-    tags: ['Gemini', 'Neo4j Aura', 'Streamlit', 'Cypher', 'PyVis'],
+    {
+    id: 'nanya',
+    title: 'NANYA Station',
+    fullTitle: 'Nanya Acoustic Monitoring Station',
+    client: 'Federation University Australia - Nanya Conservation Reserve',
+    role: 'Research and Development Intern ',
+    focus: 'Raspberry Pi, BirdNET-Pi, LoRa, GPS Timing',
+    year: '2025–2026',
+    color: '#4A87DF',
+    intro: 'A remote acoustic monitoring system designed to detect bird calls in conservation environments using distributed Raspberry Pi stations.',
+    details: 'Consists of three remote stations  species detection, LoRa for low-bandwidth metadata sharing, GPS timing for high-precision timestamps, and a field-ready design for remote deployment and environmental monitoring.',
+    tags: ['Raspberry Pi', 'BirdNET-Pi', 'LoRa', 'GPS', 'Solar'],
   },
-  {
+
+    {
     id: 'buzzbay',
     title: 'BUZZBAY EV',
     fullTitle: 'Buzzbay EV Charging Communication System',
@@ -25,30 +26,31 @@ const projects = [
     focus: 'EV Charging, ESP32, MQTT, OCPP, LoRa',
     year: '2026',
     color: '#B9A158',
-    intro: 'A research and development project connecting EV charging hardware, embedded controllers, MQTT infrastructure, OCPP bridge layers, and charging networks.',
+    intro: 'A research and development project for industrial client, Buzzbay - connecting thier EV charging hardware with embedded controllers, MQTT infrastructure, OCPP bridge layers, and charging networks.',
     details: 'The system supports a fallback simulation mode using dummy charging data while hardware components are under repair. The architecture is designed so live OpenEVSE data can later replace the dummy data stream with minimal changes.',
     tags: ['ESP32', 'MQTT', 'OCPP', 'LoRa', 'OpenEVSE'],
   },
+  
   {
-    id: 'nanya',
-    title: 'NANYA',
-    fullTitle: 'Nanya Acoustic Monitoring Station',
-    client: 'Federation University Australia / Nanya Conservation Reserve',
-    role: 'Research / IoT Developer',
-    focus: 'Raspberry Pi, BirdNET-Pi, LoRa, GPS Timing',
-    year: '2025–2026',
-    color: '#4A87DF',
-    intro: 'A remote acoustic monitoring system designed to detect bird calls in conservation environments using distributed Raspberry Pi stations.',
-    details: 'The station network uses BirdNET-Pi for species detection, LoRa for low-bandwidth metadata sharing, GPS timing for high-precision timestamps, and a field-ready design for remote deployment and environmental monitoring.',
-    tags: ['Raspberry Pi', 'BirdNET-Pi', 'LoRa', 'GPS', 'Solar'],
+    id: 'simint',
+    title: 'SIMINT',
+    fullTitle: 'SIMINT — Simulative Intelligence',
+    client: 'Federation University Australia',
+    role: 'Developer / Scrum Master',
+    focus: 'Natural Language Querying, AI, Neo4j, Streamlit ',
+    year: '2025',
+    color: '#D04A2B',
+    intro: 'An AI-powered investigation support system that lets non-technical users ask natural-language questions and receive structured insights from a cloud-hosted database.',
+    details: 'SIMINT enables plain English to Cypher query generation, Neo4j Aura, graph visualisation, and investigative intelligence workflows. The goal is to reduce technical barriers and help users uncover relationships across incidents, actors, locations, ideologies, and event patterns.',
+    tags: ['Gemini', 'Neo4j Aura', 'Streamlit', 'Cypher', 'PyVis'],
   },
+
 ];
 
 const experience = [
   { title: 'Research Assistant', place: 'Buzzbay Energy x Federation University Australia', time: '2026', text: 'Supporting EV charging communication research across embedded systems, MQTT, OCPP, and hardware simulation workflows.' },
-  { title: 'Developer / Scrum Master', place: 'SIMINT Capstone Project', time: '2025', text: 'Built AI-assisted natural-language querying workflows, graph database integration, and project sprint deliverables.' },
-  { title: 'IT Support Officer', place: 'Compass Group', time: 'Current', text: 'Providing technical support, troubleshooting, and operational assistance in a professional environment.' },
-  { title: 'Hospitality Professional', place: 'Voco Melbourne Central', time: 'Current', text: 'Developing communication, service, teamwork, and pressure-handling skills in a fast-paced customer environment.' },
+  { title: 'Sole Intern, Development and Deployment', place: 'Federation University Australia - Nanya Conservation Reserve, NSW, Australia', time: '2025', text: 'Research and Development of Renewable Energy Powered Remote Stations capable of observing data of interests for an endangerd species - Malleefowl ' },
+ 
 ];
 
 function useSectionBackground() {
@@ -71,7 +73,7 @@ function useSectionBackground() {
 
 function FloatingMenu() {
   const [open, setOpen] = useState(false);
-  const navItems = ['Home', 'Work', 'About', 'Experience', 'Contact'];
+  const navItems = ['Home', 'Projects', 'About', 'Experience', 'Contact'];
   const scrollTo = (id) => {
     setOpen(false);
     document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
