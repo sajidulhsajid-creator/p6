@@ -106,7 +106,7 @@ function ProjectVisual({ project }) {
       <div className="absolute inset-8 border border-black/10" />
       <div className="absolute left-6 top-6 rounded-full bg-black px-4 py-2 text-xs font-bold uppercase tracking-widest text-white md:left-10 md:top-10">{project.focus.split(',')[0]}</div>
       <div className="absolute bottom-8 left-6 right-6 md:bottom-10 md:left-10 md:right-10">
-        <p className="mb-4 max-w-2xl text-sm font-semibold uppercase tracking-[0.35em] text-black/50">Selected Project</p>
+        <p className="mb-4 max-w-2xl text-sm font-semibold uppercase tracking-[0.35em] text-black/50">Project</p>
         <h3 className="text-6xl font-black uppercase leading-[0.85] tracking-tighter text-black md:text-8xl lg:text-9xl">{project.title}</h3>
       </div>
       <div className="absolute right-6 top-6 hidden gap-3 md:grid md:right-10 md:top-10">
