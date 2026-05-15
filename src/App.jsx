@@ -78,8 +78,7 @@ const projects = [
     ],
     media: [
       { type: "image", src: "buzzbay-hardware.jpg", caption: "ESP32 LoRa gateway hardware" },
-      { type: "image", src: "buzzbay-architecture.jpg", caption: "System architecture diagram" },
-      { type: "image", src: "buzzbay-ocpp.jpg", caption: "OCPP message flow" },
+      { type: "image", src: "buzzbay-architecture.jpg", caption: "Product Design Prototype" },
     ],
   },
   {
@@ -108,7 +107,7 @@ const projects = [
     media: [
       { type: "image", src: "simint-interface.jpg", caption: "Query interface" },
       { type: "image", src: "simint-graph.jpg", caption: "Network graph visualisation" },
-      { type: "image", src: "simint-results.jpg", caption: "Structured results view" },
+      { type: "image", src: "simint-results.jpg", caption: "Cloud Neo4j Aura Database - Allowing multi-user accessibility" },
       { type: "video", src: "simint-demo.mp4", caption: "Live query demonstration" },
     ],
   },
