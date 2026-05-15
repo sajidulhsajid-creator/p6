@@ -29,7 +29,7 @@ const projects = [
     fullTitle: "Nanya Acoustic Monitoring Station",
     client: "Federation University Australia — Nanya Conservation Reserve",
     role: "Research and Development Intern",
-    focus: "Raspberry Pi, BirdNET-Pi, LoRa, GPS Timing",
+    focus: "Raspberry Pi, LoRa, "Triangulation",
     year: "2025–2026",
     color: "#4A87DF",
     intro: "A remote acoustic monitoring system designed to detect bird calls in conservation environments using distributed Raspberry Pi stations.",
@@ -247,7 +247,7 @@ function MediaPlaceholder({ src, type = "image", caption, color = "#333", tall =
             <div className="flex flex-col items-center gap-3 text-white/30">
               <PlayIcon size={40} />
               <p className="text-sm font-mono opacity-60">{src}</p>
-              <p className="text-xs opacity-40">Upload to /public/ in your repo</p>
+              <p className="text-xs opacity-40">Upload to /public/ in  repo</p>
             </div>
           )}
         </div>
@@ -278,7 +278,7 @@ function MediaPlaceholder({ src, type = "image", caption, color = "#333", tall =
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-white/30">
               <ImageIcon size={48} />
               <p className="text-sm font-mono opacity-60">{src}</p>
-              <p className="text-xs opacity-40">Upload to /public/ in your repo</p>
+              <p className="text-xs opacity-40">Upload to /public/ in  repo</p>
             </div>
           )}
         </div>
