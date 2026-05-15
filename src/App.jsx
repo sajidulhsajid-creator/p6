@@ -13,6 +13,7 @@ function MenuIcon({ size = 24 }) { return <Icon size={size}><line x1="4" y1="7" 
 function XIcon({ size = 24 }) { return <Icon size={size}><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></Icon>; }
 function ArrowUpRightIcon({ size = 18 }) { return <Icon size={size}><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></Icon>; }
 function ArrowLeftIcon({ size = 18 }) { return <Icon size={size}><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></Icon>; }
+function ArrowRightIcon({ size = 16 }) { return <Icon size={size}><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></Icon>; }
 function MailIcon({ size = 18 }) { return <Icon size={size}><rect x="3" y="5" width="18" height="14" rx="2" /><polyline points="3 7 12 13 21 7" /></Icon>; }
 function GithubIcon({ size = 18 }) { return <Icon size={size}><path d="M9 19c-4.2 1.3-4.2-2.1-6-2.5" /><path d="M15 22v-3.5a3.2 3.2 0 0 0-.9-2.5c3-.3 6.1-1.5 6.1-6.5a5 5 0 0 0-1.3-3.5 4.7 4.7 0 0 0-.1-3.4s-1-.3-3.5 1.3a12 12 0 0 0-6.4 0C6.4 2.3 5.4 2.6 5.4 2.6a4.7 4.7 0 0 0-.1 3.4A5 5 0 0 0 4 9.5c0 5 3.1 6.2 6.1 6.5a3.2 3.2 0 0 0-.9 2.5V22" /></Icon>; }
 function LinkedinIcon({ size = 18 }) { return <Icon size={size}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></Icon>; }
@@ -79,7 +80,6 @@ const projects = [
       { type: "image", src: "buzzbay-hardware.jpg", caption: "ESP32 LoRa gateway hardware" },
       { type: "image", src: "buzzbay-architecture.jpg", caption: "System architecture diagram" },
       { type: "image", src: "buzzbay-ocpp.jpg", caption: "OCPP message flow" },
-      { type: "video", src: "buzzbay-demo.mp4", caption: "System demonstration" },
     ],
   },
   {
@@ -140,16 +140,9 @@ function useSectionBackground() {
 
 // ─── Logo ─────────────────────────────────────────────────────────────────────
 function LogoMark({ onClick }) {
-  const [collapsed, setCollapsed] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setCollapsed(true), 2200);
-    return () => clearTimeout(t);
-  }, []);
   return (
-    <button onClick={onClick} aria-label="Go home" style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }} className="fixed left-6 top-6 z-40 md:left-12 md:top-10">
-      <span style={{ fontFamily: "'Dancing Script', cursive", fontSize: collapsed ? "3.5rem" : "2.8rem", color: "white", display: "inline-block", transition: "all 0.6s cubic-bezier(0.4,0,0.2,1)", whiteSpace: "nowrap", overflow: "hidden", maxWidth: collapsed ? "3.5rem" : "14rem", lineHeight: 1 }}>
-        {collapsed ? "s" : "sajid"}
-      </span>
+    <button onClick={onClick} aria-label="Go home" className="fixed left-6 top-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-xl transition hover:bg-white hover:text-black md:left-12 md:top-10">
+      <Icon size={22}><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z" /><polyline points="9 21 9 12 15 12 15 21" /></Icon>
     </button>
   );
 }
@@ -188,9 +181,60 @@ function FloatingMenu({ onNav }) {
   );
 }
 
+// ─── Lightbox ─────────────────────────────────────────────────────────────────
+function Lightbox({ src, caption, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="fixed inset-0 z-[200] flex items-center justify-center bg-black/95 p-4 md:p-8"
+      >
+        <button
+          onClick={onClose}
+          className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-black"
+          aria-label="Close"
+        >
+          <XIcon size={22} />
+        </button>
+        <motion.div
+          initial={{ scale: 0.92, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.92, opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={(e) => e.stopPropagation()}
+          className="relative max-h-[90vh] max-w-[90vw]"
+        >
+          <img
+            src={src}
+            alt={caption || ""}
+            className="max-h-[85vh] max-w-[88vw] rounded-lg object-contain shadow-2xl"
+          />
+          {caption && (
+            <p className="mt-3 text-center text-sm text-white/60">{caption}</p>
+          )}
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 // ─── Media Placeholder ────────────────────────────────────────────────────────
 function MediaPlaceholder({ src, type = "image", caption, color = "#333", tall = false }) {
   const [errored, setErrored] = useState(false);
+  const [lightbox, setLightbox] = useState(false);
   const height = tall ? "min-h-[420px] md:min-h-[560px]" : "min-h-[220px] md:min-h-[300px]";
 
   if (type === "video") {
@@ -203,7 +247,7 @@ function MediaPlaceholder({ src, type = "image", caption, color = "#333", tall =
             <div className="flex flex-col items-center gap-3 text-white/30">
               <PlayIcon size={40} />
               <p className="text-sm font-mono opacity-60">{src}</p>
-              <p className="text-xs opacity-40">Upload to /assets/ in your repo</p>
+              <p className="text-xs opacity-40">Upload to /public/ in your repo</p>
             </div>
           )}
         </div>
@@ -213,20 +257,34 @@ function MediaPlaceholder({ src, type = "image", caption, color = "#333", tall =
   }
 
   return (
-    <figure className="space-y-2">
-      <div className={`relative ${height} overflow-hidden rounded-lg`} style={{ background: `linear-gradient(135deg, ${color}18, ${color}35)`, border: `2px dashed ${color}55` }}>
-        {!errored ? (
-          <img src={`/p6/${src}`} alt={caption || src} className="absolute inset-0 h-full w-full object-cover" onError={() => setErrored(true)} />
-        ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-white/30">
-            <ImageIcon size={48} />
-            <p className="text-sm font-mono opacity-60">{src}</p>
-            <p className="text-xs opacity-40">Upload to /assets/ in your repo</p>
-          </div>
-        )}
-      </div>
-      {caption && <figcaption className="text-sm text-white/50">{caption}</figcaption>}
-    </figure>
+    <>
+      {lightbox && <Lightbox src={`/p6/${src}`} caption={caption} onClose={() => setLightbox(false)} />}
+      <figure className="space-y-2">
+        <div
+          className={`group relative ${height} overflow-hidden rounded-lg ${!errored ? "cursor-zoom-in" : ""}`}
+          style={{ background: `linear-gradient(135deg, ${color}18, ${color}35)`, border: `2px dashed ${color}55` }}
+          onClick={() => !errored && setLightbox(true)}
+        >
+          {!errored ? (
+            <>
+              <img src={`/p6/${src}`} alt={caption || src} className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-105" onError={() => setErrored(true)} />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition duration-300 group-hover:bg-black/30">
+                <div className="translate-y-2 rounded-full bg-white/90 p-3 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <Icon size={18}><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></Icon>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-white/30">
+              <ImageIcon size={48} />
+              <p className="text-sm font-mono opacity-60">{src}</p>
+              <p className="text-xs opacity-40">Upload to /public/ in your repo</p>
+            </div>
+          )}
+        </div>
+        {caption && <figcaption className="text-sm text-white/50">{caption}</figcaption>}
+      </figure>
+    </>
   );
 }
 
@@ -245,14 +303,12 @@ function ProjectCard({ project, index, onClick }) {
         </motion.aside>
 
         <motion.div initial={{ opacity: 0, y: 70 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.9 }} className="space-y-10">
-          {/* Clickable card */}
           <button onClick={() => onClick(project.id)} className="group relative w-full cursor-pointer text-left focus:outline-none">
             <div className="relative min-h-[280px] overflow-hidden sm:min-h-[360px] md:min-h-[500px]" style={{ backgroundColor: `${project.color}22` }}>
               <div className="absolute inset-0 opacity-60" style={{ background: `linear-gradient(135deg, #f8f8f8, ${project.color}33)` }} />
               {!imgErrored ? (
-                <img src={`/p6/assets/${project.heroImage}`} alt={project.title} className="absolute inset-0 h-full w-full object-cover" onError={() => setImgErrored(true)} />
+                <img src={`/p6/${project.heroImage}`} alt={project.title} className="absolute inset-0 h-full w-full object-cover" onError={() => setImgErrored(true)} />
               ) : null}
-              {/* Hover overlay */}
               <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/50">
                 <span className="translate-y-4 rounded-full bg-white px-6 py-3 font-bold text-black opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   View Project →
@@ -295,14 +351,13 @@ function ProjectCard({ project, index, onClick }) {
 }
 
 // ─── Project Detail Page ──────────────────────────────────────────────────────
-function ProjectPage({ project, onBack }) {
+function ProjectPage({ project, onBack, nextProject, onNext }) {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "#0d0d0d" }}>
       {/* Hero */}
       <div className="relative min-h-[60vh] overflow-hidden flex items-end" style={{ backgroundColor: project.color }}>
-        {/* Hero image behind everything */}
         <div className="absolute inset-0">
           <MediaPlaceholder src={project.heroImage} type="image" color={project.color} tall />
         </div>
@@ -332,13 +387,11 @@ function ProjectPage({ project, onBack }) {
 
       {/* Body */}
       <div className="px-6 py-16 md:px-12 lg:px-16 space-y-20 max-w-6xl">
-        {/* Overview */}
         <motion.section initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <p className="mb-4 text-sm font-bold uppercase tracking-[0.35em] text-white/40">Overview</p>
           <p className="text-2xl leading-relaxed text-white/90 md:text-3xl">{project.overview}</p>
         </motion.section>
 
-        {/* Challenge + Solution */}
         <motion.section initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="grid gap-12 md:grid-cols-2">
           <div>
             <p className="mb-4 text-sm font-bold uppercase tracking-[0.35em] text-white/40">Challenge</p>
@@ -350,7 +403,6 @@ function ProjectPage({ project, onBack }) {
           </div>
         </motion.section>
 
-        {/* Media gallery */}
         <motion.section initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <p className="mb-8 text-sm font-bold uppercase tracking-[0.35em] text-white/40">Photos & Videos</p>
           <div className="grid gap-6 sm:grid-cols-2">
@@ -360,7 +412,6 @@ function ProjectPage({ project, onBack }) {
           </div>
         </motion.section>
 
-        {/* Outcomes */}
         <motion.section initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <p className="mb-6 text-sm font-bold uppercase tracking-[0.35em] text-white/40">Key Outcomes</p>
           <div className="space-y-3">
@@ -379,7 +430,13 @@ function ProjectPage({ project, onBack }) {
         <button onClick={onBack} className="flex items-center gap-2 font-semibold text-white/60 transition hover:text-white">
           <ArrowLeftIcon size={16} /> Back to projects
         </button>
-        <div className="text-sm text-white/30">MD Sajidul Haque Sajid</div>
+        {nextProject && (
+          <button onClick={() => onNext(nextProject.id)} className="flex items-center gap-3 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white/60 transition hover:border-white hover:text-white">
+            <span className="hidden sm:block">{nextProject.title}</span>
+            <span className="sm:hidden">Next</span>
+            <ArrowRightIcon size={16} />
+          </button>
+        )}
       </div>
     </div>
   );
@@ -425,13 +482,13 @@ function HomePage({ onProjectClick, onSectionNav }) {
               Say Hello <ArrowUpRightIcon size={18} />
             </a>
           </motion.div>
-<motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative min-h-[280px] overflow-hidden sm:min-h-[440px] md:min-h-[620px]">
-  <img src="/p6/sajid.jpg" alt="Sajid" className="absolute inset-0 h-full w-full object-cover object-top" />
-  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-  <div className="absolute bottom-8 left-8 right-8">
-    <h2 className="mt-3 text-4xl font-black uppercase leading-[0.85] tracking-tighter text-white sm:text-6xl md:text-8xl">Things I love to do.</h2>
-  </div>
-</motion.div>
+          <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative min-h-[280px] overflow-hidden sm:min-h-[440px] md:min-h-[620px]">
+            <img src="/p6/sajid.jpg" alt="Sajid" className="absolute inset-0 h-full w-full object-cover object-top" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute bottom-8 left-8 right-8">
+              <h2 className="mt-3 text-4xl font-black uppercase leading-[0.85] tracking-tighter text-white sm:text-6xl md:text-8xl">Things I love to do.</h2>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -492,7 +549,9 @@ export default function App() {
     }
   };
 
-  const currentProject = projects.find((p) => p.id === page.projectId);
+  const currentIndex = projects.findIndex((p) => p.id === page.projectId);
+  const currentProject = projects[currentIndex];
+  const nextProject = currentIndex >= 0 && currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
   return (
     <>
@@ -505,7 +564,7 @@ export default function App() {
           </motion.div>
         ) : (
           <motion.div key={`project-${page.projectId}`} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-            <ProjectPage project={currentProject} onBack={goHome} />
+            <ProjectPage project={currentProject} onBack={goHome} nextProject={nextProject} onNext={goToProject} />
           </motion.div>
         )}
       </AnimatePresence>
