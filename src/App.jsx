@@ -415,7 +415,7 @@ function HomePage({ onProjectClick, onSectionNav }) {
           <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="space-y-10">
             <div>
               <p className="mb-5 text-sm font-bold uppercase tracking-[0.35em] text-white/40">About</p>
-              <p className="max-w-2xl text-2xl leading-snug text-white/90 md:text-3xl">I'm Sajid, a Bachelor of Information Technology student at Federation University Australia with a strong interest in AI, IoT, cloud systems, databases, and practical research projects.</p>
+              <p className="max-w-2xl text-2xl leading-snug text-white/90 md:text-3xl">I'm Sajid, a final year Bachelor of Information Technology student at Federation University Australia with a strong interest in AI, IoT, cloud systems, databases, and practical research projects.</p>
             </div>
             <div>
               <p className="mb-5 text-sm font-bold uppercase tracking-[0.35em] text-white/40">Current Focus</p>
@@ -425,13 +425,13 @@ function HomePage({ onProjectClick, onSectionNav }) {
               Say Hello <ArrowUpRightIcon size={18} />
             </a>
           </motion.div>
-          <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative min-h-[280px] overflow-hidden bg-white/10 sm:min-h-[440px] md:min-h-[620px]">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent" />
-            <div className="absolute bottom-8 left-8 right-8">
-              <p className="text-sm font-bold uppercase tracking-[0.35em] text-white/50">Portrait / Working Image</p>
-              <h2 className="mt-3 text-4xl font-black uppercase leading-[0.85] tracking-tighter sm:text-6xl md:text-8xl">Builds Useful Systems.</h2>
-            </div>
-          </motion.div>
+<motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative min-h-[280px] overflow-hidden sm:min-h-[440px] md:min-h-[620px]">
+  <img src="/p6/sajid.jpg" alt="Sajid" className="absolute inset-0 h-full w-full object-cover object-top" />
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+  <div className="absolute bottom-8 left-8 right-8">
+    <h2 className="mt-3 text-4xl font-black uppercase leading-[0.85] tracking-tighter text-white sm:text-6xl md:text-8xl">Things I love to do.</h2>
+  </div>
+</motion.div>
         </div>
       </section>
 
