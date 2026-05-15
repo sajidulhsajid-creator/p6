@@ -38,7 +38,7 @@ const projects = [
     heroImage: "nanya-hero.jpg",
     overview: "The Nanya Acoustic Monitoring Station is a multi-node IoT system deployed at Federation University Australia's NSW research station. It uses three Raspberry Pi nodes running BirdNET-Pi to passively detect and identify bird species in real time, contributing to conservation data for the endangered Malleefowl.",
     challenge: "The station operates in a remote conservation reserve with no reliable internet. Power comes from solar panels, and communication between nodes had to work over long distances with minimal bandwidth.",
-    solution: "Each node runs BirdNET-Pi on a Raspberry Pi with a dedicated microphone array. LoRa radios transmit lightweight detection metadata between nodes and to a base gateway. GPS-disciplined PPS timing ensures detection timestamps are accurate to the millisecond across all nodes.",
+    solution: "Each node is occupied with a dedicated microphone array. LoRa radios transmit lightweight detection metadata between nodes and to a base gateway. GPS-disciplined PPS timing ensures detection timestamps are accurate to the millisecond across all nodes.",
     outcomes: [
       "Three fully operational remote stations deployed in the field, capable of species detection & respective triangulation",
       "Real-time species detection with 15-second analysis windows",
