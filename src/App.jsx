@@ -198,7 +198,7 @@ function MediaPlaceholder({ src, type = "image", caption, color = "#333", tall =
       <figure className="space-y-2">
         <div className={`relative ${height} overflow-hidden rounded-lg bg-black flex items-center justify-center`} style={{ border: `2px dashed ${color}66` }}>
           {!errored ? (
-            <video src={`/p6/assets/${src}`} controls className="absolute inset-0 h-full w-full object-cover" onError={() => setErrored(true)} />
+            <video src={`/p6/${src}`} controls className="absolute inset-0 h-full w-full object-cover" onError={() => setErrored(true)} />
           ) : (
             <div className="flex flex-col items-center gap-3 text-white/30">
               <PlayIcon size={40} />
@@ -216,7 +216,7 @@ function MediaPlaceholder({ src, type = "image", caption, color = "#333", tall =
     <figure className="space-y-2">
       <div className={`relative ${height} overflow-hidden rounded-lg`} style={{ background: `linear-gradient(135deg, ${color}18, ${color}35)`, border: `2px dashed ${color}55` }}>
         {!errored ? (
-          <img src={`/p6/assets/${src}`} alt={caption || src} className="absolute inset-0 h-full w-full object-cover" onError={() => setErrored(true)} />
+          <img src={`/p6/${src}`} alt={caption || src} className="absolute inset-0 h-full w-full object-cover" onError={() => setErrored(true)} />
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-white/30">
             <ImageIcon size={48} />
