@@ -29,7 +29,7 @@ const projects = [
     fullTitle: "Nanya Acoustic Monitoring Station",
     client: "Federation University Australia — Nanya Conservation Reserve",
     role: "Research and Development Intern",
-    focus: "Raspberry Pi, LoRa, "Triangulation",
+    focus: "Raspberry Pi, LoRa, Triangulation",
     year: "2025–2026",
     color: "#4A87DF",
     intro: "A remote acoustic monitoring system designed to detect bird calls in conservation environments using distributed Raspberry Pi stations.",
