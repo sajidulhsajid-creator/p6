@@ -40,17 +40,17 @@ const projects = [
     challenge: "The station operates in a remote conservation reserve with no reliable internet. Power comes from solar panels, and communication between nodes had to work over long distances with minimal bandwidth.",
     solution: "Each node runs BirdNET-Pi on a Raspberry Pi with a dedicated microphone array. LoRa radios transmit lightweight detection metadata between nodes and to a base gateway. GPS-disciplined PPS timing ensures detection timestamps are accurate to the millisecond across all nodes.",
     outcomes: [
-      "Three fully operational remote stations deployed in the field",
+      "Three fully operational remote stations deployed in the field, capable of species detection & respective triangulation",
       "Real-time species detection with 15-second analysis windows",
-      "Sub-millisecond GPS timestamp synchronisation across nodes",
+      "Sub-millisecond GPS timestamp synchronisation across nodes, resulting in successful triangulation",
       "Flask dashboard for live monitoring and detection history",
       "Academic paper drafted for submission to Ecological Informatics",
     ],
     media: [
-      { type: "image", src: "nanya-station.jpg", caption: "Remote station hardware setup" },
+      { type: "image", src: "nanya-station.jpg", caption: "one of the three nodes" },
       { type: "image", src: "nanya-dashboard.jpg", caption: "Flask monitoring dashboard" },
-      { type: "image", src: "nanya-lora.jpg", caption: "LoRa communication module" },
-      { type: "video", src: "nanya-demo.mp4", caption: "Live detection demo" },
+      { type: "image", src: "nanya-lora.jpg", caption: "Each successful triangulation results gets plotted" },
+      { type: "video", src: "nanya-demo.mp4", caption: "Portable and Weatherproof construction" },
     ],
   },
   {
