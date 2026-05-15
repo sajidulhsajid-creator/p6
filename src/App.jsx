@@ -241,12 +241,12 @@ function MediaPlaceholder({ src, type = "image", caption, color = "#333", tall =
       <figure className="space-y-2">
         <div className={`relative ${height} overflow-hidden rounded-lg bg-black flex items-center justify-center`} style={{ border: `2px dashed ${color}66` }}>
           {!errored ? (
-            <video src={`/p6/${src}`} controls className="absolute inset-0 h-full w-full object-cover" onError={() => setErrored(true)} />
+            <video src={`/${src}`} controls className="absolute inset-0 h-full w-full object-cover" onError={() => setErrored(true)} />
           ) : (
             <div className="flex flex-col items-center gap-3 text-white/30">
               <PlayIcon size={40} />
               <p className="text-sm font-mono opacity-60">{src}</p>
-              <p className="text-xs opacity-40">Upload to /public/ in  repo</p>
+              <p className="text-xs opacity-40">Upload to /public/ in your repo</p>
             </div>
           )}
         </div>
@@ -257,7 +257,7 @@ function MediaPlaceholder({ src, type = "image", caption, color = "#333", tall =
 
   return (
     <>
-      {lightbox && <Lightbox src={`/p6/${src}`} caption={caption} onClose={() => setLightbox(false)} />}
+      {lightbox && <Lightbox src={`/${src}`} caption={caption} onClose={() => setLightbox(false)} />}
       <figure className="space-y-2">
         <div
           className={`group relative ${height} overflow-hidden rounded-lg ${!errored ? "cursor-zoom-in" : ""}`}
@@ -266,7 +266,7 @@ function MediaPlaceholder({ src, type = "image", caption, color = "#333", tall =
         >
           {!errored ? (
             <>
-              <img src={`/p6/${src}`} alt={caption || src} className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-105" onError={() => setErrored(true)} />
+              <img src={`/${src}`} alt={caption || src} className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-105" onError={() => setErrored(true)} />
               <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition duration-300 group-hover:bg-black/30">
                 <div className="translate-y-2 rounded-full bg-white/90 p-3 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <Icon size={18}><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></Icon>
@@ -277,7 +277,7 @@ function MediaPlaceholder({ src, type = "image", caption, color = "#333", tall =
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-white/30">
               <ImageIcon size={48} />
               <p className="text-sm font-mono opacity-60">{src}</p>
-              <p className="text-xs opacity-40">Upload to /public/ in  repo</p>
+              <p className="text-xs opacity-40">Upload to /public/ in your repo</p>
             </div>
           )}
         </div>
@@ -306,7 +306,7 @@ function ProjectCard({ project, index, onClick }) {
             <div className="relative min-h-[280px] overflow-hidden sm:min-h-[360px] md:min-h-[500px]" style={{ backgroundColor: `${project.color}22` }}>
               <div className="absolute inset-0 opacity-60" style={{ background: `linear-gradient(135deg, #f8f8f8, ${project.color}33)` }} />
               {!imgErrored ? (
-                <img src={`/p6/${project.heroImage}`} alt={project.title} className="absolute inset-0 h-full w-full object-cover" onError={() => setImgErrored(true)} />
+                <img src={`/${project.heroImage}`} alt={project.title} className="absolute inset-0 h-full w-full object-cover" onError={() => setImgErrored(true)} />
               ) : null}
               <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/50">
                 <span className="translate-y-4 rounded-full bg-white px-6 py-3 font-bold text-black opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
@@ -489,12 +489,12 @@ function HomePage({ onProjectClick, onSectionNav }) {
               <p className="mb-5 text-sm font-bold uppercase tracking-[0.35em] text-white/40">Current Focus</p>
               <p className="text-xl text-white/80">Research Assistant, IoT systems, AI-assisted applications, graph databases, and cloud-connected prototypes.</p>
             </div>
-            <a href="mailto:sajidul.h.sajid@gmail.com" className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 font-semibold text-black transition hover:scale-105">
+            <a href="mailto:mdsajidulhaquesajid@federation.edu.au" className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 font-semibold text-black transition hover:scale-105">
               Say Hello <ArrowUpRightIcon size={18} />
             </a>
           </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative min-h-[280px] overflow-hidden sm:min-h-[440px] md:min-h-[620px]">
-            <img src="/p6/sajid.jpg" alt="Sajid" className="absolute inset-0 h-full w-full object-cover object-top" />
+            <img src="/sajid.jpg" alt="Sajid" className="absolute inset-0 h-full w-full object-cover object-top" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="absolute bottom-8 left-8 right-8">
               <h2 className="mt-3 text-4xl font-black uppercase leading-[0.85] tracking-tighter text-white sm:text-6xl md:text-8xl">Things I love to do.</h2>
@@ -530,9 +530,8 @@ function HomePage({ onProjectClick, onSectionNav }) {
         <div className="grid gap-6 border-t border-white/20 pt-8 md:grid-cols-[1fr_auto] md:items-end">
           <p className="max-w-xl text-lg text-white/60">Open to research, internship, project collaboration, and technology support opportunities across AI, IoT, cloud, and applied systems.</p>
           <div className="flex flex-wrap gap-2 sm:gap-3">
-            <a href="mailto:mdsajidulhaquesajid@federation.edu.au" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-black transition hover:scale-105 sm:px-5"><MailIcon size={16} /> Email</a>
+            <a href="mailto:mdsajidulhaque.sajid@federation.edu.au" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-black transition hover:scale-105 sm:px-5"><MailIcon size={16} /> Email</a>
             <a href="https://www.linkedin.com/in/md-sajidul-haque-sajid-48373a292/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black sm:px-5"><LinkedinIcon size={16} /> LinkedIn</a>
-            
           </div>
         </div>
         <footer className="pt-10 text-sm text-white/40">© {currentYear} MD Sajidul Haque Sajid</footer>
