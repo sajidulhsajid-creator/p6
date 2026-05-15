@@ -351,7 +351,7 @@ function ProjectCard({ project, index, onClick }) {
 }
 
 // ─── Project Detail Page ──────────────────────────────────────────────────────
-function ProjectPage({ project, onBack, nextProject, onNext }) {
+function ProjectPage({ project, onBack, nextProject, onNext, onNav }) {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
@@ -430,12 +430,24 @@ function ProjectPage({ project, onBack, nextProject, onNext }) {
         <button onClick={onBack} className="flex items-center gap-2 font-semibold text-white/60 transition hover:text-white">
           <ArrowLeftIcon size={16} /> Back to projects
         </button>
-        {nextProject && (
+        {nextProject ? (
           <button onClick={() => onNext(nextProject.id)} className="flex items-center gap-3 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white/60 transition hover:border-white hover:text-white">
             <span className="hidden sm:block">{nextProject.title}</span>
             <span className="sm:hidden">Next</span>
             <ArrowRightIcon size={16} />
           </button>
+        ) : (
+          <div className="flex items-center gap-2">
+            {["About", "Experience", "Contact"].map((section) => (
+              <button
+                key={section}
+                onClick={() => onNav(section.toLowerCase())}
+                className="rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white/60 transition hover:border-white hover:text-white"
+              >
+                {section}
+              </button>
+            ))}
+          </div>
         )}
       </div>
     </div>
@@ -564,7 +576,7 @@ export default function App() {
           </motion.div>
         ) : (
           <motion.div key={`project-${page.projectId}`} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-            <ProjectPage project={currentProject} onBack={goHome} nextProject={nextProject} onNext={goToProject} />
+            <ProjectPage project={currentProject} onBack={goHome} nextProject={nextProject} onNext={goToProject} onNav={handleNav} />
           </motion.div>
         )}
       </AnimatePresence>
