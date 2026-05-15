@@ -531,10 +531,9 @@ function HomePage({ onProjectClick, onSectionNav }) {
         <div className="grid gap-6 border-t border-white/20 pt-8 md:grid-cols-[1fr_auto] md:items-end">
           <p className="max-w-xl text-lg text-white/60">Open to research, internship, project collaboration, and technology support opportunities across AI, IoT, cloud, and applied systems.</p>
           <div className="flex flex-wrap gap-2 sm:gap-3">
-            <a href="mailto:sajidul.h.sajid@gmail.com" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-black transition hover:scale-105 sm:px-5"><MailIcon size={16} /> Email</a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black sm:px-5"><LinkedinIcon size={16} /> LinkedIn</a>
-            <a href="https://github.com/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black sm:px-5"><GithubIcon size={16} /> GitHub</a>
-            <a href="#" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black sm:px-5"><DownloadIcon size={16} /> Resume</a>
+            <a href="mailto:mdsajidulhaquesajid@federation.edu.au" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-black transition hover:scale-105 sm:px-5"><MailIcon size={16} /> Email</a>
+            <a href="https://www.linkedin.com/in/md-sajidul-haque-sajid-48373a292/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black sm:px-5"><LinkedinIcon size={16} /> LinkedIn</a>
+            
           </div>
         </div>
         <footer className="pt-10 text-sm text-white/40">© {currentYear} MD Sajidul Haque Sajid</footer>
